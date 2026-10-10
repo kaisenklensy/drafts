@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070b">
+    <title>VirPlayz | Gaming &amp; Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #f3f0e8;
+            --muted: #b9b9b1;
+            --accent: #d7a77d;
+            --green: #b9d3bd;
+            --paper: #f3f0e8;
+            --dark: #121615;
+            --scene-image: url("images/library.jpg");
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: "DM Sans", sans-serif;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .stage {
+            position: relative;
+            isolation: isolate;
+            min-height: min(820px, 100svh);
+            overflow: hidden;
+            background: #121615;
+        }
+
+        .stage::before,
+        .stage::after {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            content: "";
+        }
+
+        .stage::before {
+            background-image: linear-gradient(90deg, rgba(11, 15, 15, .88), rgba(11, 15, 15, .60) 44%, rgba(11, 15, 15, .22)), linear-gradient(0deg, rgba(11, 15, 15, .68), transparent 42%), var(--scene-image);
+            background-position: center, center, center 53%;
+            background-size: cover;
+            transform: scale(1.02);
+        }
+
+        .stage.is-changing::before {
+            animation: scene-arrive .75s ease both;
+        }
+
+        .stage::after {
+            pointer-events: none;
+            background: radial-gradient(ellipse at 76% 42%, transparent, rgba(0, 0, 0, .12) 72%);
+        }
+
+        @keyframes scene-arrive {
+            from {
+                opacity: .3;
+                transform: scale(1.07);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .topbar,
+        .hero,
+        .stage-bottom,
+        .gallery-inner,
+        .footer-inner {
+            width: min(1240px, calc(100% - 64px));
+            margin-inline: auto;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 88px;
+            border-bottom: 1px solid rgba(255, 255, 255, .18);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 34px;
+            aspect-ratio: 1;
+            place-items: center;
+            border: 1px solid rgba(215, 167, 125, .75);
+            border-radius: 50%;
+            color: var(--accent);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: rgba(243, 240, 232, .82);
+            font-size: 12px;
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            padding: 11px 16px;
+            border: 1px solid rgba(243, 240, 232, .5);
+            border-radius: 2px;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 490px;
+            padding-block: 75px 84px;
+        }
+
+        .hero-copy {
+            max-width: 610px;
+            animation: rise-in .8s .08s both;
+        }
+
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 22px;
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 30px;
+            height: 1px;
+            background: var(--green);
+            content: "";
+        }
+
+        h1,
+        h2,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 660px;
+            margin-bottom: 22px;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(48px, 7vw, 82px);
+            font-weight: 500;
+            line-height: 1.02;
+        }
+
+        h1 em {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .hero-description {
+            max-width: 420px;
+            margin-bottom: 30px;
+            color: rgba(243, 240, 232, .76);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .primary-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 22px;
+            padding: 14px 17px;
+            background: var(--accent);
+            color: #201912;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background .2s ease, gap .2s ease, transform .2s ease;
+        }
+
+        .primary-link:hover {
+            gap: 30px;
+            background: #ecc29d;
+            transform: translateY(-2px);
+        }
+
+        .primary-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .stage-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding-block: 19px;
+            border-top: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        .current-selection {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px rgba(185, 211, 189, .7);
+        }
+
+        .selection-label {
+            color: rgba(243, 240, 232, .58);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .selection-name {
+            margin-left: 3px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .social-links a {
+            display: grid;
+            width: 37px;
+            aspect-ratio: 1;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, .23);
+            border-radius: 50%;
+            color: rgba(243, 240, 232, .84);
+            transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #201912;
+        }
+
+        .social-links svg {
+            width: 15px;
+            height: 15px;
+            fill: currentColor;
+        }
+
+        .gallery {
+            padding: 84px 0 96px;
+            background: var(--paper);
+            color: #252a27;
+        }
+
+        .gallery-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 30px;
+        }
+
+        .gallery .eyebrow {
+            margin-bottom: 14px;
+            color: #657b69;
+        }
+
+        .gallery .eyebrow::before {
+            background: #657b69;
+        }
+
+        h2 {
+            margin-bottom: 0;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(34px, 4vw, 48px);
+            font-weight: 500;
+            line-height: 1.1;
+        }
+
+        .gallery-note {
+            max-width: 280px;
+            margin-bottom: 4px;
+            color: #68706a;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .filter-button {
+            min-height: 37px;
+            padding: 0 15px;
+            border: 1px solid #d3d4cc;
+            border-radius: 2px;
+            background: transparent;
+            color: #505852;
+            cursor: pointer;
+            font: inherit;
+            font-size: 11px;
+            transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+        }
+
+        .filter-button:hover {
+            transform: translateY(-2px);
+            border-color: #405d4b;
+        }
+
+        .filter-button[aria-pressed="true"] {
+            border-color: #273c30;
+            background: #273c30;
+            color: #f3f0e8;
+        }
+
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .background-card {
+            display: block;
+            min-width: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 2px solid transparent;
+            border-radius: 3px;
+            background: #dcded7;
+            color: #252a27;
+            cursor: pointer;
+            text-align: left;
+            transition: border-color .2s ease, transform .25s ease, box-shadow .25s ease;
+        }
+
+        .background-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 26px rgba(32, 39, 34, .13);
+        }
+
+        .background-card.is-selected {
+            border-color: #657b69;
+            box-shadow: 0 0 0 3px rgba(101, 123, 105, .16);
+        }
+
+        .background-card[hidden] {
+            display: none;
+        }
+
+        .card-image,
+        .gradient-preview {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1.62;
+            object-fit: cover;
+        }
+
+        .card-image {
+            transition: transform .55s cubic-bezier(.2, .75, .3, 1);
+        }
+
+        .background-card:hover .card-image {
+            transform: scale(1.045);
+        }
+
+        .gradient-aurora {
+            background: radial-gradient(ellipse at 70% 25%, rgba(155, 208, 174, .78), transparent 29%), radial-gradient(ellipse at 28% 80%, rgba(106, 139, 132, .8), transparent 38%), linear-gradient(135deg, #182b2b, #42594d 52%, #b0a786);
+        }
+
+        .gradient-paper {
+            background: radial-gradient(ellipse at 75% 18%, rgba(255, 255, 255, .8), transparent 36%), linear-gradient(135deg, #d5cbb4, #eee7d8 54%, #9d8a71);
+        }
+
+        .card-copy {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 15px;
+        }
+
+        .card-title {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .card-category {
+            display: block;
+            margin-top: 4px;
+            color: #737b73;
+            font-size: 10px;
+        }
+
+        .card-check {
+            display: grid;
+            width: 25px;
+            aspect-ratio: 1;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid #c3c9c0;
+            border-radius: 50%;
+            color: transparent;
+            transition: color .2s ease, background .2s ease, border-color .2s ease, transform .3s ease;
+        }
+
+        .is-selected .card-check {
+            transform: rotate(360deg);
+            border-color: #405d4b;
+            background: #405d4b;
+            color: white;
+        }
+
+        .card-check svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        footer {
+            background: #202824;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 22px;
+        }
+
+        .footer-inner p {
+            margin: 0;
+            color: #b7beb7;
+            font-size: 11px;
+        }
+
+        .footer-name {
+            color: #f3f0e8;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 16px;
+        }
+
+        @media (max-width: 760px) {
+
+            .topbar,
+            .hero,
+            .stage-bottom,
+            .gallery-inner,
+            .footer-inner {
+                width: min(calc(100% - 40px), 560px);
+            }
+
+            .topbar {
+                min-height: 72px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+
+            .hero {
+                min-height: 480px;
+                padding-block: 72px 66px;
+            }
+
+            .stage {
+                min-height: min(760px, 100svh);
+            }
+
+            .stage::before {
+                background-position: center, center, 58% center;
+            }
+
+            .gallery {
+                padding: 66px 0 72px;
+            }
+
+            .gallery-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .background-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .card-copy {
+                padding: 12px 10px;
+            }
+
+            .card-title {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .background-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-image,
+            .gradient-preview {
+                aspect-ratio: 1.9;
+            }
+
+            .stage-bottom {
+                align-items: start;
+                flex-direction: column;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+        :root {
+            --ink: #eef5ee;
+            --muted: #aab8ac;
+            --accent: #c7ff45;
+            --green: #85f6d2;
+            --paper: #101411;
+            --dark: #101411;
+        }
+
+        body {
+            background: #101411;
+            font-family: "Rajdhani", sans-serif;
+        }
+
+        .stage {
+            min-height: min(860px, 100svh);
+            background: #101411;
+        }
+
+        .stage::before {
+            background-image: linear-gradient(90deg, rgba(8, 13, 12, .9), rgba(8, 13, 12, .68) 42%, rgba(8, 13, 12, .24)), linear-gradient(0deg, rgba(8, 13, 12, .82), transparent 48%), var(--scene-image);
+        }
+
+        .stage::after {
+            background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(199, 255, 69, .025) 4px), linear-gradient(135deg, rgba(12, 250, 195, .06), transparent 48%, rgba(199, 255, 69, .08));
+        }
+
+        .topbar {
+            border-bottom-color: rgba(133, 246, 210, .2);
+        }
+
+        .brand {
+            font-family: "Orbitron", sans-serif;
+            font-size: 11px;
+            letter-spacing: .08em;
+        }
+
+        .brand-mark {
+            border-radius: 3px;
+            border-color: var(--accent);
+            color: var(--accent);
+            font-family: "Orbitron", sans-serif;
+            box-shadow: 0 0 16px rgba(199, 255, 69, .15);
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            border-color: rgba(133, 246, 210, .6);
+        }
+
+        .nav-cta:hover {
+            background: rgba(133, 246, 210, .1);
+        }
+
+        .eyebrow {
+            color: var(--accent);
+            font-family: "Orbitron", sans-serif;
+            font-size: 10px;
+            letter-spacing: .14em;
+        }
+
+        .eyebrow::before {
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        h1 {
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(38px, 6.4vw, 76px);
+            line-height: 1.12;
+        }
+
+        h1 em {
+            color: var(--accent);
+            font-style: normal;
+            text-shadow: 0 0 28px rgba(199, 255, 69, .28);
+        }
+
+        .hero-description {
+            font-size: 17px;
+        }
+
+        .primary-link {
+            background: var(--accent);
+            color: #12180c;
+            font-family: "Orbitron", sans-serif;
+            font-size: 10px;
+            letter-spacing: .04em;
+        }
+
+        .primary-link:hover {
+            background: #dcff8f;
+        }
+
+        .stage-bottom {
+            border-top-color: rgba(133, 246, 210, .25);
+        }
+
+        .live-dot {
+            background: var(--accent);
+            box-shadow: 0 0 13px var(--accent);
+        }
+
+        .selection-label {
+            color: var(--green);
+            font-family: "Orbitron", sans-serif;
+            font-size: 9px;
+            letter-spacing: .08em;
+        }
+
+        .selection-name {
+            font-size: 15px;
+        }
+
+        .social-links a {
+            border-radius: 3px;
+            border-color: rgba(133, 246, 210, .4);
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+
+        .gallery {
+            background: #101411;
+            color: var(--ink);
+        }
+
+        .gallery .eyebrow {
+            color: var(--green);
+        }
+
+        .gallery .eyebrow::before {
+            background: var(--green);
+            box-shadow: 0 0 10px var(--green);
+        }
+
+        h2 {
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(27px, 3.8vw, 40px);
+        }
+
+        .gallery-note {
+            color: #aab8ac;
+            font-size: 15px;
+        }
+
+        .filter-button {
+            border-color: #35433a;
+            color: #c4d0c6;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .filter-button:hover {
+            border-color: var(--green);
+        }
+
+        .filter-button[aria-pressed="true"] {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #12180c;
+        }
+
+        .background-card {
+            border-color: #27342c;
+            border-radius: 2px;
+            background: #171e19;
+            color: var(--ink);
+        }
+
+        .background-card.is-selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 22px rgba(199, 255, 69, .16);
+        }
+
+        .card-copy {
+            min-height: 72px;
+        }
+
+        .card-title {
+            font-size: 15px;
+        }
+
+        .card-category {
+            color: #92a397;
+            font-size: 12px;
+        }
+
+        .card-check {
+            border-color: #4c5d50;
+        }
+
+        .is-selected .card-check {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #12180c;
+        }
+
+        footer {
+            border-top: 1px solid rgba(133, 246, 210, .18);
+            background: #0b0f0d;
+        }
+
+        .footer-inner p {
+            font-size: 13px;
+        }
+
+        .footer-name {
+            color: var(--green);
+            font-family: "Orbitron", sans-serif;
+            font-size: 12px;
+        }
+
+        .brand,
+        .eyebrow,
+        .primary-link {
+            letter-spacing: 0;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(250px, .8fr);
+            gap: 52px;
+            min-height: 500px;
+        }
+
+        .hero-copy {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            max-width: 560px;
+            margin-bottom: 18px;
+            font-size: clamp(46px, 7vw, 88px);
+        }
+
+        .hero h1 em {
+            display: block;
+        }
+
+        .hero-description {
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .secondary-link {
+            display: inline-flex;
+            min-height: 45px;
+            align-items: center;
+            padding: 0 16px;
+            border: 1px solid rgba(133, 246, 210, .55);
+            color: var(--ink);
+            font-family: "Orbitron", sans-serif;
+            font-size: 10px;
+            text-decoration: none;
+            transition: color .2s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .secondary-link:hover {
+            border-color: var(--green);
+            background: rgba(133, 246, 210, .12);
+            color: var(--green);
+        }
+
+        .share-button {
+            gap: 10px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .share-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .share-status {
+            min-height: 1.5em;
+            margin: 10px 0 0;
+            color: var(--green);
+            font-size: 12px;
+        }
+
+        .player-plate {
+            position: relative;
+            align-self: center;
+            justify-self: end;
+            width: min(100%, 330px);
+            padding: 22px;
+            border: 1px solid rgba(133, 246, 210, .45);
+            background: linear-gradient(145deg, rgba(11, 17, 14, .87), rgba(11, 17, 14, .56));
+            box-shadow: 0 0 45px rgba(0, 0, 0, .24);
+        }
+
+        .player-plate::before,
+        .player-plate::after {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-color: var(--accent);
+            border-style: solid;
+            content: "";
+        }
+
+        .player-plate::before {
+            top: -1px;
+            left: -1px;
+            border-width: 1px 0 0 1px;
+        }
+
+        .player-plate::after {
+            right: -1px;
+            bottom: -1px;
+            border-width: 0 1px 1px 0;
+        }
+
+        .plate-index,
+        .plate-kicker {
+            display: block;
+            color: var(--green);
+            font-family: "Orbitron", sans-serif;
+            font-size: 9px;
+        }
+
+        .plate-index {
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(133, 246, 210, .2);
+        }
+
+        .plate-emblem {
+            display: grid;
+            width: 78px;
+            aspect-ratio: 1;
+            margin: 23px 0 20px;
+            place-items: center;
+            border: 1px solid rgba(199, 255, 69, .6);
+            background: linear-gradient(140deg, rgba(199, 255, 69, .17), rgba(133, 246, 210, .05));
+            color: var(--accent);
+            font-family: "Orbitron", sans-serif;
+            font-size: 36px;
+            box-shadow: 0 0 24px rgba(199, 255, 69, .12);
+        }
+
+        .player-plate h2 {
+            margin: 7px 0 19px;
+            font-family: "Orbitron", sans-serif;
+            font-size: 20px;
+        }
+
+        .plate-detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            font-size: 13px;
+        }
+
+        .plate-detail span {
+            color: #aab8ac;
+        }
+
+        .plate-detail strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .about-section,
+        .setup-section {
+            padding: 86px 32px;
+        }
+
+        .about-section {
+            background: #171e19;
+        }
+
+        .section-inner {
+            width: min(1120px, 100%);
+            margin-inline: auto;
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            align-items: start;
+            gap: 80px;
+        }
+
+        .section-heading {
+            margin: 0;
+            font-family: "Orbitron", sans-serif;
+            font-size: clamp(30px, 4vw, 48px);
+            line-height: 1.2;
+        }
+
+        .about-copy {
+            max-width: 560px;
+            color: #bdc8bf;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .about-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-kicker {
+            margin: 0 0 14px;
+            color: var(--accent);
+            font-family: "Orbitron", sans-serif;
+            font-size: 10px;
+        }
+
+        .setup-section {
+            background: #101411;
+        }
+
+        .setup-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 36px;
+        }
+
+        .setup-heading p {
+            max-width: 350px;
+            margin-bottom: 2px;
+            color: #aab8ac;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .setup-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-top: 1px solid rgba(133, 246, 210, .34);
+        }
+
+        .setup-item {
+            padding: 23px 24px 0 0;
+        }
+
+        .setup-item+.setup-item {
+            padding-left: 24px;
+            border-left: 1px solid rgba(133, 246, 210, .2);
+        }
+
+        .setup-number {
+            color: var(--accent);
+            font-family: "Orbitron", sans-serif;
+            font-size: 11px;
+        }
+
+        .setup-item h3 {
+            margin: 23px 0 8px;
+            font-family: "Orbitron", sans-serif;
+            font-size: 16px;
+        }
+
+        .setup-item p {
+            max-width: 290px;
+            margin-bottom: 0;
+            color: #aab8ac;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .gallery {
+            border-top: 1px solid rgba(133, 246, 210, .18);
+        }
+
+        .gallery .section-kicker {
+            margin-bottom: 14px;
+        }
+
+        @media (max-width: 760px) {
+            .topbar {
+                flex-wrap: wrap;
+                row-gap: 10px;
+                padding-block: 10px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: inline-flex;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .nav-cta {
+                padding: 9px 10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 26px;
+                padding-block: 64px 48px;
+            }
+
+            .player-plate {
+                justify-self: start;
+                width: min(100%, 390px);
+            }
+
+            .about-section,
+            .setup-section {
+                padding: 64px 20px;
+            }
+
+            .about-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .setup-heading {
+                align-items: start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .setup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .setup-item,
+            .setup-item+.setup-item {
+                padding: 20px 0;
+                border-left: 0;
+                border-bottom: 1px solid rgba(133, 246, 210, .2);
+            }
+
+            .setup-item h3 {
+                margin-top: 13px;
+            }
+        }
+
+        :root {
+            --ink: #ffffff;
+            --muted: #c9c5d0;
+            --accent: #b66cff;
+            --green: #d7b8ff;
+            --paper: #08070b;
+            --dark: #08070b;
+        }
+
+        body,
+        .stage,
+        .gallery,
+        .setup-section {
+            background-color: #08070b;
+        }
+
+        .stage::before {
+            filter: grayscale(1);
+        }
+
+        .stage.is-color-scene::before {
+            filter: none;
+        }
+
+        .stage::after {
+            background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(182, 108, 255, .035) 4px), linear-gradient(125deg, rgba(74, 29, 112, .28), transparent 48%, rgba(182, 108, 255, .12));
+        }
+
+        .topbar {
+            border-bottom-color: rgba(215, 184, 255, .24);
+        }
+
+        .brand-mark {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 16px rgba(182, 108, 255, .2);
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, .86);
+        }
+
+        .nav-links a:hover,
+        .gallery .eyebrow {
+            color: var(--green);
+        }
+
+        .nav-cta,
+        .secondary-link {
+            border-color: rgba(215, 184, 255, .58);
+        }
+
+        .nav-cta:hover,
+        .secondary-link:hover {
+            background: rgba(182, 108, 255, .12);
+        }
+
+        .eyebrow {
+            color: var(--accent);
+        }
+
+        .eyebrow::before,
+        .gallery .eyebrow::before {
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(182, 108, 255, .75);
+        }
+
+        h1 em,
+        .plate-emblem {
+            color: var(--accent);
+        }
+
+        h1 em {
+            text-shadow: 0 0 28px rgba(182, 108, 255, .32);
+        }
+
+        .primary-link,
+        .filter-button[aria-pressed="true"] {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #09070d;
+        }
+
+        .primary-link:hover {
+            background: #d4a6ff;
+        }
+
+        .stage-bottom,
+        .gallery {
+            border-color: rgba(215, 184, 255, .25);
+        }
+
+        .live-dot {
+            background: var(--accent);
+            box-shadow: 0 0 13px rgba(182, 108, 255, .8);
+        }
+
+        .selection-label,
+        .plate-index,
+        .plate-kicker,
+        .setup-number {
+            color: var(--green);
+        }
+
+        .social-links a {
+            border-color: rgba(215, 184, 255, .48);
+            color: #ffffff;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #09070d;
+        }
+
+        .player-plate {
+            border-color: rgba(215, 184, 255, .54);
+            background: linear-gradient(145deg, rgba(9, 7, 13, .92), rgba(20, 13, 27, .82));
+        }
+
+        .player-plate::before,
+        .player-plate::after {
+            border-color: var(--accent);
+        }
+
+        .plate-index,
+        .plate-detail {
+            border-color: rgba(215, 184, 255, .22);
+        }
+
+        .plate-emblem {
+            border-color: rgba(182, 108, 255, .72);
+            background: linear-gradient(140deg, rgba(182, 108, 255, .2), rgba(255, 255, 255, .04));
+            box-shadow: 0 0 24px rgba(182, 108, 255, .18);
+        }
+
+        .plate-detail span,
+        .setup-heading p,
+        .setup-item p {
+            color: #c9c5d0;
+        }
+
+        .about-section {
+            background: #121016;
+        }
+
+        .about-copy {
+            color: #e2dfe7;
+        }
+
+        .section-kicker {
+            color: var(--green);
+        }
+
+        .setup-grid {
+            border-top-color: rgba(215, 184, 255, .42);
+        }
+
+        .setup-item+.setup-item {
+            border-left-color: rgba(215, 184, 255, .25);
+        }
+
+        .gallery {
+            color: #ffffff;
+        }
+
+        .gallery-note {
+            color: #c9c5d0;
+        }
+
+        .filter-button {
+            border-color: #4b3c5d;
+            color: #ffffff;
+        }
+
+        .filter-button:hover {
+            border-color: var(--accent);
+        }
+
+        .background-card {
+            border-color: #332a3d;
+            background: #141117;
+            color: #ffffff;
+        }
+
+        .background-card.is-selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 22px rgba(182, 108, 255, .2);
+        }
+
+        .card-image {
+            filter: grayscale(1) contrast(1.05);
+        }
+
+        .card-category {
+            color: #c9c5d0;
+        }
+
+        .card-check {
+            border-color: #77658b;
+        }
+
+        .is-selected .card-check {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #09070d;
+        }
+
+        .gradient-aurora {
+            background: radial-gradient(ellipse at 70% 25%, rgba(224, 197, 255, .72), transparent 30%), radial-gradient(ellipse at 26% 82%, rgba(115, 66, 158, .78), transparent 40%), linear-gradient(135deg, #100b17, #563276 54%, #c6b4d9);
+        }
+
+        .gradient-paper {
+            background: radial-gradient(ellipse at 75% 18%, rgba(255, 255, 255, .78), transparent 36%), linear-gradient(135deg, #08070b, #52405f 55%, #e4dcef);
+        }
+
+        footer {
+            border-top-color: rgba(215, 184, 255, .24);
+            background: #050407;
+        }
+
+        .footer-inner p {
+            color: #c9c5d0;
+        }
+
+        .footer-name {
+            color: var(--green);
+        }
+
+        @media (max-width: 760px) {
+
+            .setup-item,
+            .setup-item+.setup-item {
+                border-bottom-color: rgba(215, 184, 255, .25);
+            }
+        }
+
+        .settings-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 13px;
+            border: 1px solid rgba(215, 184, 255, .58);
+            background: rgba(8, 7, 11, .62);
+            color: #ffffff;
+            cursor: pointer;
+            font: 600 10px "Orbitron", sans-serif;
+        }
+
+        .settings-button:hover {
+            border-color: var(--accent);
+            background: rgba(182, 108, 255, .15);
+        }
+
+        .settings-button svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .settings-dialog {
+            width: min(900px, calc(100% - 28px));
+            max-width: none;
+            max-height: min(900px, calc(100% - 28px));
+            padding: 26px 30px 32px;
+            overflow: auto;
+            border: 1px solid rgba(215, 184, 255, .58);
+            background: #0b090f;
+            color: #ffffff;
+            box-shadow: 0 24px 90px rgba(0, 0, 0, .65);
+        }
+
+        .settings-dialog[open] {
+            animation: settings-enter .22s ease-out both;
+        }
+
+        .settings-dialog::backdrop {
+            background: rgba(0, 0, 0, .78);
+            backdrop-filter: blur(6px);
+        }
+
+        @keyframes settings-enter {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(.99);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .settings-dialog-head {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(215, 184, 255, .24);
+        }
+
+        .settings-dialog-head .section-kicker {
+            margin-bottom: 9px;
+        }
+
+        .settings-dialog-head h2 {
+            margin: 0;
+            font: 600 25px "Orbitron", sans-serif;
+        }
+
+        .settings-close {
+            display: grid;
+            width: 40px;
+            height: 40px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 1px solid rgba(215, 184, 255, .45);
+            background: transparent;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .settings-close:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .settings-close svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .settings-description {
+            margin: 17px 0 0;
+            color: #c9c5d0;
+            font-size: 15px;
+        }
+
+        .settings-dialog .gallery {
+            padding: 24px 0 0;
+            border: 0;
+        }
+
+        .settings-dialog .gallery-inner {
+            width: 100%;
+        }
+
+        .settings-dialog .gallery-heading {
+            margin-bottom: 20px;
+        }
+
+        .settings-dialog .section-kicker {
+            font-size: 9px;
+        }
+
+        .settings-dialog .gallery-heading h2 {
+            font: 600 20px "Orbitron", sans-serif;
+        }
+
+        .settings-dialog .gallery-note {
+            max-width: 300px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .settings-dialog {
+                padding: 20px 18px 24px;
+            }
+
+            .settings-dialog .gallery-heading {
+                gap: 9px;
+            }
+
+            .settings-dialog .background-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-dialog .card-image,
+            .settings-dialog .gradient-preview {
+                aspect-ratio: 1.9;
+            }
+        }
+
+        .intro-screen {
+            position: fixed;
+            z-index: 9999;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background: #08070b;
+            animation: intro-exit .45s 7s ease forwards;
+        }
+
+        .intro-screen::before {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(182, 108, 255, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(182, 108, 255, .04) 1px, transparent 1px);
+            background-size: 42px 42px;
+            content: "";
+            mask-image: radial-gradient(ellipse at center, black, transparent 72%);
+        }
+
+        @keyframes intro-exit {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .intro-screen.is-leaving {
+            animation: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity .3s ease, visibility 0s .3s;
+        }
+
+        .intro-content {
+            position: relative;
+            display: grid;
+            justify-items: center;
+            width: min(100% - 40px, 480px);
+            text-align: center;
+        }
+
+        .intro-mark {
+            display: grid;
+            width: 72px;
+            aspect-ratio: 1;
+            place-items: center;
+            margin-bottom: 25px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font: 600 34px "Orbitron", sans-serif;
+            box-shadow: 0 0 32px rgba(182, 108, 255, .2), inset 0 0 24px rgba(182, 108, 255, .1);
+            animation: intro-mark-in .55s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        @keyframes intro-mark-in {
+            from {
+                opacity: 0;
+                transform: scale(.72) rotate(-8deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .intro-label {
+            margin: 0 0 12px;
+            color: var(--green);
+            font: 500 9px "Orbitron", sans-serif;
+            animation: intro-copy-in .5s .18s both;
+        }
+
+        .intro-title {
+            margin: 0;
+            color: #ffffff;
+            font: 600 clamp(30px, 7vw, 52px)/1.1 "Orbitron", sans-serif;
+            animation: intro-copy-in .5s .28s both;
+        }
+
+        .intro-subtitle {
+            margin: 12px 0 24px;
+            color: #c9c5d0;
+            font-size: 14px;
+            animation: intro-copy-in .5s .4s both;
+        }
+
+        @keyframes intro-copy-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-progress {
+            width: min(180px, 60vw);
+            height: 2px;
+            overflow: hidden;
+            background: rgba(215, 184, 255, .2);
+        }
+
+        .intro-progress::after {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            content: "";
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: intro-load 6.5s .15s ease-out forwards;
+        }
+
+        @keyframes intro-load {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        .intro-skip {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            padding: 10px 13px;
+            border: 1px solid rgba(215, 184, 255, .45);
+            background: transparent;
+            color: #ffffff;
+            cursor: pointer;
+            font: 500 9px "Orbitron", sans-serif;
+        }
+
+        .intro-skip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .intro-skip {
+                top: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .intro-screen,
+            .intro-screen * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="intro-screen" id="intro-screen" role="status" aria-label="VirPlayz intro">
+        <button class="intro-skip" id="skip-intro" type="button">Skip intro</button>
+        <div class="intro-content" aria-hidden="true">
+            <span class="intro-mark">V</span>
+            <p class="intro-label">PLAYER PROFILE / VIRPLAYZ</p>
+            <p class="intro-title">VIRPLAYZ</p>
+            <p class="intro-subtitle">GAMING · CONTENT · COMMUNITY</p>
+            <span class="intro-progress"></span>
+        </div>
+    </div>
+    <main>
+        <section class="stage" id="home" aria-label="Featured background">
+            <header class="topbar">
+                <a class="brand" href="#home" aria-label="VirPlayz home"><span class="brand-mark"
+                        aria-hidden="true">V</span><span>VIRPLAYZ</span></a>
+                <nav class="nav-links" aria-label="Main navigation"><a href="#about">About</a><a
+                        href="#social">Social</a><a href="community.html">Community</a><a
+                        href="guidelines.html">Guidelines</a><button class="settings-button" id="open-settings"
+                        type="button" aria-haspopup="dialog" aria-controls="settings-dialog" aria-expanded="false"><svg
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                            <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+                            <path
+                                d="m19.4 15 .1.1a1.7 1.7 0 1 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 1 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 1 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 1 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 1 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 1 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 1 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 1 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z" />
+                        </svg>Settings</button></nav>
+            </header>
+            <div class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow">Gaming · content · community</p>
+                    <h1>VIR<em>PLAYZ</em></h1>
+                    <p class="hero-description">Welcome to my gaming corner. Find my videos, join the community, and
+                        follow along with the next session.</p>
+                    <div class="hero-actions">
+                        <a class="primary-link" href="https://youtube.com/@ravenplayz-rx?si=yuuE6kLi-I_g1Nkg"
+                            target="_blank" rel="noopener noreferrer">Watch my channel<svg viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                <path d="M5 12h14M13 5l7 7-7 7" />
+                            </svg></a>
+                        <a class="secondary-link" href="https://discord.gg/xWAu6Q3hMX" target="_blank"
+                            rel="noopener noreferrer">Join the Discord</a>
+                        <button class="secondary-link share-button" id="share-page" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                aria-hidden="true">
+                                <circle cx="18" cy="5" r="3" />
+                                <circle cx="6" cy="12" r="3" />
+                                <circle cx="18" cy="19" r="3" />
+                                <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" />
+                            </svg>
+                            Share this page
+                        </button>
+                    </div>
+                    <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+                </div>
+                <aside class="player-plate" aria-label="VirPlayz profile">
+                    <span class="plate-index">PLAYER PROFILE / 001</span>
+                    <span class="plate-emblem" aria-hidden="true">V</span>
+                    <span class="plate-kicker">CREATOR CHANNEL</span>
+                    <h2>VIRPLAYZ</h2>
+                    <div class="plate-detail"><span>Content</span><strong>Gaming</strong></div>
+                    <div class="plate-detail"><span>Community</span><strong>Discord</strong></div>
+                </aside>
+            </div>
+            <div class="stage-bottom">
+                <div class="current-selection" aria-live="polite"><span class="live-dot" aria-hidden="true"></span><span
+                        class="selection-label">Current atmosphere</span><span class="selection-name"
+                        id="selected-name">The Old Library</span></div>
+                <nav class="social-links" id="social" aria-label="Social media">
+                    <a href="https://discord.gg/xWAu6Q3hMX" target="_blank" rel="noopener noreferrer"
+                        aria-label="Join our Discord server"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M19.5 5.3a18 18 0 0 0-4.4-1.4l-.6 1.2a16 16 0 0 0-5 0l-.6-1.2a18 18 0 0 0-4.4 1.4C1.7 9.5 1 13.6 1.4 17.7a18 18 0 0 0 5.4 2.7l1.2-2a11 11 0 0 1-1.9-.9l.5-.4a13 13 0 0 0 11 0l.5.4a11 11 0 0 1-1.9.9l1.2 2a18 18 0 0 0 5.4-2.7c.5-4.8-.8-8.9-3.3-12.4ZM8.7 14.8c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z" />
+                        </svg></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.3-3.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z" />
+                        </svg></a>
+                    <a href="https://youtube.com/@ravenplayz-rx?si=yuuE6kLi-I_g1Nkg" target="_blank"
+                        rel="noopener noreferrer" aria-label="VirPlayz YouTube channel"><svg viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z" />
+                        </svg></a>
+                    <a href="https://www.tiktok.com/@rhaisweak?is_from_webapp=1&amp;sender_device=pc" target="_blank"
+                        rel="noopener noreferrer" aria-label="TikTok profile"><svg viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path
+                                d="M19.6 6.2a5.6 5.6 0 0 1-3.4-4.7V1h-4.3v15.1a3.3 3.3 0 1 1-3.3-3.3c.4 0 .8 0 1.1.2V8.6a8 8 0 0 0-1.1-.1 7.6 7.6 0 1 0 7.6 7.6V8.4a9.7 9.7 0 0 0 5.6 1.8V6a5.7 5.7 0 0 1-2.2.2Z" />
+                        </svg></a>
+                </nav>
+            </div>
+        </section>
+        <section class="about-section" id="about" aria-labelledby="about-title">
+            <div class="section-inner about-layout">
+                <div>
+                    <p class="section-kicker">BEHIND THE GAMERTAG</p>
+                    <h2 class="section-heading" id="about-title">A little about my corner of gaming.</h2>
+                </div>
+                <div class="about-copy">
+                    <p>I’m VirPlayz. This page brings together my gaming content and the people I share it with.</p>
+                    <p>Catch the videos on YouTube, join the Discord, and take a look around.</p>
+                </div>
+            </div>
+        </section>
+        <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+            <div class="settings-dialog-head">
+                <div>
+                    <p class="section-kicker">VIRPLAYZ / PREFERENCES</p>
+                    <h2 id="settings-title">Settings</h2>
+                </div>
+                <button class="settings-close" id="close-settings" type="button" aria-label="Close settings"><svg
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path d="m6 6 12 12M18 6 6 18" />
+                    </svg></button>
+            </div>
+            <p class="settings-description">Personalize the look of the page. Background changes are managed here.</p>
+            <section class="gallery" id="backgrounds" aria-labelledby="gallery-title">
+                <div class="gallery-inner">
+                    <div class="gallery-heading">
+                        <div>
+                            <p class="section-kicker">BACKGROUND SETTINGS · 04 SCENES</p>
+                            <h2 id="gallery-title">Set the scene</h2>
+                        </div>
+                        <p class="gallery-note">Choose the scene used on the main page.</p>
+                    </div>
+                    <div class="filters" role="group" aria-label="Filter backgrounds">
+                        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All
+                            scenes</button><button class="filter-button" type="button" data-filter="photo"
+                            aria-pressed="false">Photography</button><button class="filter-button" type="button"
+                            data-filter="art" aria-pressed="false">Illustration</button><button class="filter-button"
+                            type="button" data-filter="color" aria-pressed="false">Color studies</button>
+                    </div>
+                    <div class="background-grid" role="group" aria-label="Available backgrounds">
+                        <button class="background-card is-selected" type="button" data-category="art"
+                            data-name="The Old Library" data-image="images/library.jpg" aria-pressed="true"><img
+                                class="card-image" src="images/library.jpg"
+                                alt="An illustrated, candlelit library at night"><span class="card-copy"><span><span
+                                        class="card-title">The Old Library</span><span
+                                        class="card-category">Illustration</span></span><span class="card-check"
+                                    aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg></span></span></button>
+                        <button class="background-card" type="button" data-category="photo" data-name="Quiet Orbit"
+                            data-image="images/SKY_20260829_012222.jpg" aria-pressed="false"><img class="card-image"
+                                src="images/SKY_20260829_012222.jpg" alt="A quiet, star-speckled night sky"><span
+                                class="card-copy"><span><span class="card-title">Quiet Orbit</span><span
+                                        class="card-category">Photography</span></span><span class="card-check"
+                                    aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg></span></span></button>
+                        <button class="background-card" type="button" data-category="color" data-name="Violet Pulse"
+                            data-image="gradient-aurora" aria-pressed="false"><span
+                                class="gradient-preview gradient-aurora" role="img"
+                                aria-label="Violet and lavender color study"></span><span class="card-copy"><span><span
+                                        class="card-title">Violet Pulse</span><span class="card-category">Color
+                                        study</span></span><span class="card-check" aria-hidden="true"><svg
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg></span></span></button>
+                        <button class="background-card" type="button" data-category="color" data-name="Mono Chrome"
+                            data-image="gradient-paper" aria-pressed="false"><span
+                                class="gradient-preview gradient-paper" role="img"
+                                aria-label="Black, white, and violet color study"></span><span
+                                class="card-copy"><span><span class="card-title">Mono Chrome</span><span
+                                        class="card-category">Color study</span></span><span class="card-check"
+                                    aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="m5 12 4 4L19 6" />
+                                    </svg></span></span></button>
+                    </div>
+                </div>
+            </section>
+        </dialog>
+    </main>
+    <footer>
+        <div class="footer-inner"><span class="footer-name">VIRPLAYZ</span>
+            <p>Gaming · content · community</p>
+            <p>© <span id="year"></span></p>
+        </div>
+    </footer>
+    <script>
+        const introScreen = document.querySelector("#intro-screen");
+        const skipIntroButton = document.querySelector("#skip-intro");
+        let introTimer;
+
+        function finishIntro() {
+            if (!introScreen.isConnected || introScreen.classList.contains("is-leaving")) return;
+            window.clearTimeout(introTimer);
+            introScreen.classList.add("is-leaving");
+            window.setTimeout(() => introScreen.remove(), 320);
+        }
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            finishIntro();
+        } else {
+            introTimer = window.setTimeout(finishIntro, 7000);
+            skipIntroButton.addEventListener("click", finishIntro);
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") finishIntro();
+            }, { once: true });
+        }
+
+        const stage = document.querySelector(".stage");
+        const selectedName = document.querySelector("#selected-name");
+        const cards = [...document.querySelectorAll(".background-card")];
+        const filterButtons = [...document.querySelectorAll(".filter-button")];
+        const settingsDialog = document.querySelector("#settings-dialog");
+        const openSettingsButton = document.querySelector("#open-settings");
+        const closeSettingsButton = document.querySelector("#close-settings");
+        const closeSettings = () => {
+            if (!settingsDialog.open) return;
+            settingsDialog.close();
+            openSettingsButton.setAttribute("aria-expanded", "false");
+            openSettingsButton.focus();
+        };
+        const backgrounds = {
+            "gradient-aurora": "radial-gradient(ellipse at 70% 25%, rgba(224,197,255,.72), transparent 30%), radial-gradient(ellipse at 26% 82%, rgba(115,66,158,.78), transparent 40%), linear-gradient(135deg, #100b17, #563276 54%, #c6b4d9)",
+            "gradient-paper": "radial-gradient(ellipse at 75% 18%, rgba(255,255,255,.78), transparent 36%), linear-gradient(135deg, #08070b, #52405f 55%, #e4dcef)"
+        };
+
+        cards.forEach((card) => card.addEventListener("click", () => {
+            cards.forEach((item) => {
+                const selected = item === card;
+                item.classList.toggle("is-selected", selected);
+                item.setAttribute("aria-pressed", String(selected));
+            });
+            const image = card.dataset.image;
+            stage.classList.toggle("is-color-scene", image.startsWith("gradient-"));
+            stage.style.setProperty("--scene-image", backgrounds[image] || `url("${image}")`);
+            selectedName.textContent = card.dataset.name;
+            stage.classList.remove("is-changing");
+            void stage.offsetWidth;
+            stage.classList.add("is-changing");
+            window.setTimeout(() => stage.classList.remove("is-changing"), 800);
+        }));
+
+        filterButtons.forEach((button) => button.addEventListener("click", () => {
+            filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+            const filter = button.dataset.filter;
+            cards.forEach((card) => { card.hidden = filter !== "all" && card.dataset.category !== filter; });
+        }));
+        document.querySelector("#year").textContent = new Date().getFullYear();
+        const shareButton = document.querySelector("#share-page");
+        const shareStatus = document.querySelector("#share-status");
+        shareButton.addEventListener("click", async () => {
+            const shareUrl = new URL(window.location.href);
+            shareUrl.hash = "";
+            const shareData = {
+                title: document.title,
+                text: "Check out my gaming corner!",
+                url: shareUrl.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    shareStatus.textContent = "Thanks for sharing!";
+                    return;
+                } catch (error) {
+                    if (error.name === "AbortError") return;
+                }
+            }
+
+            try {
+                await navigator.clipboard.writeText(shareUrl.href);
+                shareStatus.textContent = "Page link copied. Send it to your friends!";
+            } catch {
+                window.prompt("Copy this link to share the page:", shareUrl.href);
+                shareStatus.textContent = "Copy the page link above to share it with your friends.";
+            }
+        });
+        openSettingsButton.addEventListener("click", () => {
+            settingsDialog.showModal();
+            openSettingsButton.setAttribute("aria-expanded", "true");
+        });
+        closeSettingsButton.addEventListener("click", closeSettings);
+        settingsDialog.addEventListener("click", (event) => {
+            if (event.target === settingsDialog) closeSettings();
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && settingsDialog.open) closeSettings();
+        });
+        settingsDialog.addEventListener("close", () => {
+            openSettingsButton.setAttribute("aria-expanded", "false");
+            openSettingsButton.focus();
+        });
+    </script>
+</body>
+
+</html>
